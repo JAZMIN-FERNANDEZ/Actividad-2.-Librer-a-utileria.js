@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="login.html">Ir a iniciar sesión</a>
+    </nav>
+</header>
+<div class="caja">
+    <h2>Registro</h2>
+    <form id="formularioRegistro">
+
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Ej. Jazmín Fernández López">
+        <div class="error" id="errorNombre"></div>
+
+        <label for="curp">CURP</label>
+        <input type="text" id="curp" placeholder="Ej. FELJ040823MOCRPZA9">
+        <div class="error" id="errorCurp"></div>
+
+        <label for="correo">Correo electrónico</label>
+        <input type="text" id="correo" placeholder="Ej. correo@gmail.com">
+        <div class="error" id="errorCorreo"></div>
+
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" placeholder="Ej. 9513966011">
+        <div class="error" id="errorTelefono"></div>
+
+        <label for="codigoPostal">Código postal</label>
+        <input type="text" id="codigoPostal" placeholder="Ej. 68000">
+        <div class="error" id="errorCP"></div>
+
+        <label for="fechaNacimiento">Fecha de nacimiento</label>
+        <input type="date" id="fechaNacimiento" max="">
+        <div class="error" id="errorFecha"></div>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres">
+        <div class="error" id="errorPassword"></div>
+
+        <button type="submit">Registrarme</button>
+
+    </form>
+</div>
+<div class="fondo-modal" id="modal">
+    <div class="modal">
+
+        <h2>Datos registrados correctamente</h2>
+
+        <p>Estos son tus datos:</p>
+        <div class="datos-registrados" id="datosRegistrados"></div>
+        <button type="button" id="irLogin">Ir a iniciar sesión</button>
+        <button type="button" id="cerrar">Cerrar</button>
+    </div>
+</div>
+<footer>
+    Hecho por Jazmín · Instituto Tecnológico de Oaxaca
+</footer>
+<script src="js/utileria.js"></script>
+<script src="js/Registro.js"></script>
+</body>
+</html>

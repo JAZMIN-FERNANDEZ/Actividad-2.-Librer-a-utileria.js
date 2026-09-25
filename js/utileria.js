@@ -1,47 +1,53 @@
+
 function validarCorreo(correo) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(correo);
+    const formato = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+    return formato.test(correo);
 }
 
-function validarPassword(password) {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-    return regex.test(password);
+function soloLetras(texto) {
+    const letras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    return letras.test(texto);
 }
 
-function soloLetras(texto){
-    const regex= /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/;
-    return regex.test(texto);
+function validarLongitud(numero, maximo) {
+    return String(numero).length <= maximo;
 }
 
-function validarLongitud(numero, maxLongitud) {
-    const regex = new RegExp(`^\\d{1,${maxLongitud}}$`);
-    return regex.test(String(numero));
-}
-function esMayorDeEdad(fechaNacimiento) {
-
-    let edad = calcularEdad(fechaNacimiento);
-
-    if (edad >= 18) {
-        return true;
-    } else {
-        return false;
-    }
-}
 function calcularEdad(fechaNacimiento) {
-
-    let nacimiento = new Date(fechaNacimiento);
-    let hoy = new Date();
+    const nacimiento = new Date(fechaNacimiento);
+    const hoy = new Date();
 
     let edad = hoy.getFullYear() - nacimiento.getFullYear();
 
-    if (hoy.getMonth() < nacimiento.getMonth()) {
-        edad = edad - 1;
-    }
-
-    if (hoy.getMonth() === nacimiento.getMonth() &&
-        hoy.getDate() < nacimiento.getDate()) {
-        edad = edad - 1;
+    if (hoy.getMonth() < nacimiento.getMonth() || (hoy.getMonth() == nacimiento.getMonth() && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
     }
 
     return edad;
+}
+
+function esMayorDeEdad(fechaNacimiento) {
+    return calcularEdad(fechaNacimiento) >= 18;
+}
+
+function validarPassword(password) {
+    const formato = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+    return formato.test(password);
+}
+
+
+function validarCURP(curp) {
+    curp = curp.toUpperCase();
+
+    const formato = /^[A-Z][AEIOU][A-Z]{2}\d{6}[HM][A-Z]{5}[A-Z0-9]\d$/;
+
+    return formato.test(curp);
+}
+
+function guardarDatos(datos) {
+    localStorage.setItem("usuario", JSON.stringify(datos));
+}
+
+function formatearTelefono(telefono) {
+    return telefono.substring(0, 3) + "-" + telefono.substring(3, 6) + "-" + telefono.substring(6, 10);
 }
