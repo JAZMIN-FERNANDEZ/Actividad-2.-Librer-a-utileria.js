@@ -158,3 +158,8 @@ CAPTURAS DE PANTALLA DEL FUNCIONAMIENTO
 
 ### inicio de sesion
 ![el inicio de sesion comprueba que todo este correcto, como contraseña y correo](img/captura7.png)
+
+## Video venta
+
+Link de youtube video corto
+https://youtu.be/rzuep4TpMV8
