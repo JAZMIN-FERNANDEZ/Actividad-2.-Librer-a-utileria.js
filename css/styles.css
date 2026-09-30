@@ -88,6 +88,10 @@ select:focus {
     color: #8c4560;
     font-weight: bold;
 }
+.resultado:empty {
+    display: none;
+}
+
 
 .datos-registrados {
     margin-top: 15px;

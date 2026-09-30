@@ -9,8 +9,8 @@ function soloLetras(texto) {
     return letras.test(texto);
 }
 
-function validarLongitud(numero, maximo) {
-    return String(numero).length <= maximo;
+function validarLongitud(valor, maximo) {
+    return String(valor).length <= maximo;
 }
 
 function calcularEdad(fechaNacimiento) {
@@ -43,10 +43,19 @@ function validarCURP(curp) {
 
     return formato.test(curp);
 }
+function validarTelefono(telefono) {
+    const formato = /^\d{10}$/;
+    return formato.test(telefono);
+}
 
+function validarCodigoPostal(codigo) {
+    const formato = /^\d{5}$/;
+    return formato.test(codigo);
+}
 function guardarDatos(datos) {
     localStorage.setItem("usuario", JSON.stringify(datos));
 }
+
 
 function formatearTelefono(telefono) {
     return telefono.substring(0, 3) + "-" + telefono.substring(3, 6) + "-" + telefono.substring(6, 10);

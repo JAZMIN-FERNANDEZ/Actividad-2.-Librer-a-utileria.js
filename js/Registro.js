@@ -4,6 +4,7 @@ document.getElementById("fechaNacimiento").max = new Date().toISOString().split(
 
 formulario.addEventListener("submit", function(e) {
     e.preventDefault();
+    //aqui cada linea busca un input por su id
 
     const nombre = document.getElementById("nombre");
     const curp = document.getElementById("curp");
@@ -23,11 +24,11 @@ formulario.addEventListener("submit", function(e) {
 
     let correcto = true;
 
-    if (nombre.value.trim() == "" || !soloLetras(nombre.value)) {
-        document.getElementById("errorNombre").textContent = "Escribe un nombre válido.";
-        nombre.value = "";
-        correcto = false;
-    }
+    if (nombre.value.trim() == "" || !soloLetras(nombre.value) || !validarLongitud(nombre.value, 50)) {
+    document.getElementById("errorNombre").textContent = "Escribe un nombre válido (solo letras, máximo 50).";
+    nombre.value = "";
+    correcto = false;
+}
 
     if (!validarCURP(curp.value)) {
         document.getElementById("errorCurp").textContent = "La CURP no tiene un formato válido.";
@@ -35,23 +36,23 @@ formulario.addEventListener("submit", function(e) {
         correcto = false;
     }
 
-    if (!validarCorreo(correo.value)) {
-        document.getElementById("errorCorreo").textContent = "Correo no válido.";
-        correo.value = "";
-        correcto = false;
-    }
+    if (!validarCorreo(correo.value) || !validarLongitud(correo.value, 50)) {
+    document.getElementById("errorCorreo").textContent = "Correo no válido (máximo 50 caracteres).";
+    correo.value = "";
+    correcto = false;
+}
 
-    if (!/^\d{10}$/.test(telefono.value)) {
-        document.getElementById("errorTelefono").textContent = "El teléfono debe tener 10 dígitos.";
-        telefono.value = "";
-        correcto = false;
-    }
+   if (!validarTelefono(telefono.value)) {
+    document.getElementById("errorTelefono").textContent = "El teléfono debe tener 10 dígitos.";
+    telefono.value = "";
+    correcto = false;
+}
 
-    if (!/^\d{5}$/.test(codigo.value)) {
-        document.getElementById("errorCP").textContent = "El código postal debe tener 5 dígitos.";
-        codigo.value = "";
-        correcto = false;
-    }
+if (!validarCodigoPostal(codigo.value)) {
+    document.getElementById("errorCP").textContent = "El código postal debe tener 5 dígitos.";
+    codigo.value = "";
+    correcto = false;
+}
 
     if (fecha.value == "") {
         document.getElementById("errorFecha").textContent = "Selecciona una fecha.";
@@ -69,9 +70,8 @@ formulario.addEventListener("submit", function(e) {
     }
 
     if (!correcto) {
-        return;
+        return; 
     }
-
     const edad = calcularEdad(fecha.value);
     const mayor = esMayorDeEdad(fecha.value);
 
@@ -92,7 +92,7 @@ formulario.addEventListener("submit", function(e) {
         "<p><strong>Nombre:</strong> " + datos.nombre + "</p>" +
         "<p><strong>CURP:</strong> " + datos.curp + "</p>" +
         "<p><strong>Correo:</strong> " + datos.correo + "</p>" +
-        "<p><strong>Teléfono:</strong> " + datos.telefono + "</p>" +
+        "<p><strong>Teléfono:</strong> " + formatearTelefono(datos.telefono) + "</p>" +
         "<p><strong>Código postal:</strong> " + datos.codigoPostal + "</p>" +
         "<p><strong>Fecha de nacimiento:</strong> " + datos.fechaNacimiento + "</p>" +
         "<p><strong>Edad:</strong> " + datos.edad + " años</p>" +
